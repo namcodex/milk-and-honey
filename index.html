@@ -1,26 +1,82 @@
-<section id="services" class="py-20 max-w-7xl mx-auto">
-    <h2 class="text-4xl text-center font-serif mb-16">Beauty & Wellness Rituals</h2>
-    <div class="grid md:grid-cols-3 gap-8 px-6">
-        <!-- Service Card Example -->
-        <div class="bg-white p-6 shadow-sm border border-[#D4A373]/20">
-            <h3 class="font-bold text-xl mb-2">Classic Manicure</h3>
-            <p class="text-sm mb-4">45 mins of rejuvenation.</p>
-            <a href="https://www.fresha.com/a/milk-honey-beauty-salon..." class="text-[#D4A373] underline">Book Now</a>
-        </div>
-        <!-- Add more from Fresha list -->
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk & Honey | Abu Dhabi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-[#FDFBF7] text-[#2C2520]">
 
-<!-- Café Section (FiLLi Style) -->
-<section id="menu" class="py-20 bg-[#2C2520] text-[#FDFBF7]">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-        <h2 class="text-4xl font-serif mb-12">Signature Sips</h2>
-        <div class="grid md:grid-cols-2 gap-8 text-left">
-            <div>
-                <p class="text-xl font-bold">Iced Spanish Latte</p>
-                <p class="text-[#D4A373]">Our fan-favorite blend.</p>
+    <!-- HERO -->
+    <header class="flex flex-col md:flex-row h-screen">
+        <div class="flex-1 bg-cover bg-center flex flex-col items-center justify-center p-10 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200');">
+            <h1 class="text-5xl text-white mb-6">The Beauty Boutique</h1>
+            <a href="#services" class="bg-[#D4A373] text-white px-8 py-3 hover:opacity-90 transition">View Services</a>
+        </div>
+        <div class="flex-1 bg-cover bg-center flex flex-col items-center justify-center p-10 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=1200');">
+            <h1 class="text-5xl text-white mb-6">The Specialty Café</h1>
+            <a href="#menu" class="bg-white text-[#2C2520] px-8 py-3 hover:bg-gray-100 transition">Explore Menu</a>
+        </div>
+    </header>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-20 max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl text-center mb-12">Beauty Services</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="border p-4"><img src="https://images.unsplash.com/photo-1632345031435-8727f6897553?w=500" class="w-full h-60 object-cover mb-4">
+                <h3 class="text-xl">Gel Manicure</h3><p>150 AED</p></div>
+            <div class="border p-4"><img src="https://images.unsplash.com/photo-1595476108422-9214732177d4?w=500" class="w-full h-60 object-cover mb-4">
+                <h3 class="text-xl">Hair Ritual</h3><p>350 AED</p></div>
+            <div class="border p-4"><img src="https://images.unsplash.com/photo-1522335789103-801726055d7f?w=500" class="w-full h-60 object-cover mb-4">
+                <h3 class="text-xl">Lash Styling</h3><p>200 AED</p></div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="py-20 bg-[#2C2520] text-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl text-center mb-12">Signature Menu</h2>
+            <div class="space-y-6">
+                <div class="flex justify-between border-b border-gray-600 pb-4"><span>Iced Spanish Latte</span><span class="text-[#D4A373]">28 AED</span></div>
+                <div class="flex justify-between border-b border-gray-600 pb-4"><span>Honey Oat Pudding</span><span class="text-[#D4A373]">35 AED</span></div>
+                <div class="flex justify-between border-b border-gray-600 pb-4"><span>Artisan Açaí Bowl</span><span class="text-[#D4A373]">45 AED</span></div>
             </div>
-            <!-- More menu items -->
+        </div>
+    </section>
+
+    <!-- CHATBOT -->
+    <div id="chat-widget" class="fixed bottom-6 right-6">
+        <button id="toggle-chat" class="bg-[#D4A373] text-white p-4 rounded-full shadow-lg">Ask Honey</button>
+        <div id="chat-box" class="hidden w-80 bg-white border border-[#D4A373] absolute bottom-16 right-0 shadow-2xl rounded-lg overflow-hidden">
+            <div class="bg-[#D4A373] p-3 text-white font-bold">Honey - Virtual Assistant</div>
+            <div id="chat-log" class="p-4 h-40 overflow-y-auto text-sm text-gray-700">Hi! How can I help?</div>
+            <div class="p-2 border-t grid gap-2">
+                <button onclick="ask('book')" class="bg-gray-100 p-2 text-left text-xs">How to book nails?</button>
+                <button onclick="ask('hours')" class="bg-gray-100 p-2 text-left text-xs">What are your hours?</button>
+            </div>
         </div>
     </div>
-</section>
+
+    <script>
+        const btn = document.getElementById('toggle-chat');
+        const box = document.getElementById('chat-box');
+        btn.onclick = () => box.classList.toggle('hidden');
+        
+        function ask(type) {
+            const log = document.getElementById('chat-log');
+            const res = {
+                book: "Book via Fresha: https://www.fresha.com/a/milk-honey-beauty-salon...",
+                hours: "We are open daily, 8 AM - 10 PM."
+            };
+            log.innerHTML += `<p class="mt-2 text-[#D4A373]"><strong>Honey:</strong> ${res[type]}</p>`;
+        }
+    </script>
+</body>
+</html>
