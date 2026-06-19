@@ -188,14 +188,15 @@
     aspect-ratio:1/1.1; border-radius:6px; position:relative; overflow:hidden;
     display:flex; align-items:flex-end; padding:1rem;
     color:#fff; font-size:.78rem; font-weight:500;
+    background-color:#3a2716;
   }
-  .ig-card::before{content:'';position:absolute; inset:0; opacity:.92;}
+  .ig-card::after{content:'';position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.55), transparent 55%); z-index:0;}
   .ig-card span{position:relative; z-index:1; background:rgba(0,0,0,.35); padding:.3rem .6rem; border-radius:4px; backdrop-filter:blur(2px);}
   .tone1::before{background:linear-gradient(160deg,#3a2716,#D89B3D);}
   .tone2::before{background:linear-gradient(160deg,#241a10,#8C5A28);}
   .tone3::before{background:linear-gradient(160deg,#5b3a17,#F0C775);}
   .tone4::before{background:linear-gradient(160deg,#1c140c,#b3742d);}
-  @media(max-width:720px){.ig-strip{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:720px){.ig-strip{grid-template-columns:repeat(2,1fr) !important;}}
   .ig-handles{display:flex; gap:1.2rem; margin-top:2.4rem; flex-wrap:wrap;}
   .ig-pill{
     display:flex; align-items:center; gap:.6rem; padding:.7rem 1.2rem;
@@ -370,6 +371,7 @@
           <rect x="95" y="60" width="110" height="40" rx="14" fill="none" stroke="#D89B3D" stroke-width="6"/>
           <text x="150" y="225" text-anchor="middle" font-family="Fraunces, serif" font-size="22" fill="#1C140C" opacity="0.8" font-style="italic">M &amp; H</text>
         </svg>
+        <div style="position:absolute; bottom:-18px; right:-28px; width:120px; aspect-ratio:1/1.1; border-radius:8px; overflow:hidden; border:3px solid var(--espresso); box-shadow:0 12px 28px rgba(0,0,0,0.5); background-image:url('https://images.pexels.com/photos/5042612/pexels-photo-5042612.jpeg?auto=compress&cs=tinysrgb&w=400'); background-size:cover; background-position:center;"></div>
       </div>
     </div>
   </div>
@@ -501,12 +503,15 @@
       </div>
       <p>We post real results, behind-the-scenes &amp; café moments daily across our two rooms — the Beauty &amp; Lounge, and Milk &amp; Honey Café next door.</p>
     </div>
-    <div class="ig-strip">
-      <div class="ig-card tone1"><span>Korean head spa ✨</span></div>
-      <div class="ig-card tone2"><span>Russian lash sets</span></div>
-      <div class="ig-card tone3"><span>Thai reflexology</span></div>
-      <div class="ig-card tone4"><span>Fresh nail extensions 💛</span></div>
+    <div class="ig-strip" style="grid-template-columns:repeat(3,1fr);">
+      <div class="ig-card" style="background-image:url('https://images.pexels.com/photos/5042612/pexels-photo-5042612.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size:cover; background-position:center;"><span>Korean head spa ✨</span></div>
+      <div class="ig-card" style="background-image:url('https://images.pexels.com/photos/5128220/pexels-photo-5128220.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size:cover; background-position:center;"><span>Russian lash extensions</span></div>
+      <div class="ig-card" style="background-image:url('https://images.pexels.com/photos/5793888/pexels-photo-5793888.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size:cover; background-position:center;"><span>Thai reflexology</span></div>
+      <div class="ig-card" style="background-image:url('https://images.pexels.com/photos/7755296/pexels-photo-7755296.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size:cover; background-position:center;"><span>Manicure &amp; nails 💛</span></div>
+      <div class="ig-card" style="background-image:url('https://images.pexels.com/photos/7440133/pexels-photo-7440133.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size:cover; background-position:center;"><span>Hair treatments</span></div>
+      <div class="ig-card" style="background-image:url('https://images.pexels.com/photos/12703064/pexels-photo-12703064.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size:cover; background-position:center;"><span>Milk &amp; Honey Café</span></div>
     </div>
+    <p style="font-size:.74rem; opacity:.5; margin-top:.8rem;">Photos shown for illustration — real Milk &amp; Honey photos coming soon.</p>
     <div style="display:flex; gap:1rem; margin-top:1.6rem; flex-wrap:wrap;">
       <div style="flex:1; min-width:220px; border:1px solid rgba(28,20,12,0.15); border-radius:8px; padding:1.1rem 1.3rem; display:flex; align-items:center; gap:.8rem;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8C5A28" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
@@ -583,11 +588,11 @@
       </div>
       <div class="info-row">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L13 14l5 2v4a2 2 0 0 1-2 2C9.5 22 2 14.5 2 7a2 2 0 0 1 1-2Z"/></svg>
-        <div>Beauty &amp; Lounge: <a href="https://wa.me/971543096247" target="_blank" rel="noopener" style="color:var(--honey-light);">WhatsApp us</a> &nbsp;·&nbsp; Café (order from your car): <a href="tel:+971543096247" style="color:var(--honey-light);"> +971543096247 </a></div>
+        <div>Beauty &amp; Lounge: <a href="https://wa.me/971543096247" target="_blank" rel="noopener" style="color:var(--honey-light);">WhatsApp us</a> &nbsp;·&nbsp; Café (order from your car): <a href="tel:+971543096247" style="color:var(--honey-light);">054 309 6247</a></div>
       </div>
       <div class="info-row">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-        <div>hello@milkandhoney-ad.com</div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L13 14l5 2v4a2 2 0 0 1-2 2C9.5 22 2 14.5 2 7a2 2 0 0 1 1-2Z"/></svg>
+        <div>+971 55 399 1840</div>
       </div>
 
       <div class="hours-table">
@@ -601,7 +606,7 @@
       <p class="eyebrow" style="margin-bottom:1.2rem;">Request an Appointment</p>
       <div class="row2">
         <div class="field"><label for="name">Full name</label><input id="name" required placeholder="Your name"></div>
-        <div class="field"><label for="phone">Phone</label><input id="phone" required placeholder="+971543096247"></div>
+        <div class="field"><label for="phone">Phone</label><input id="phone" required placeholder="+971 5x xxx xxxx"></div>
       </div>
       <div class="field"><label for="service">Service</label>
         <select id="service">
@@ -748,8 +753,8 @@ const KB = [
   { keys:['discount','offer','follow','15%','20%','10%'], a:"Yes! Follow @mnhbeautyae on Instagram for 10% off your Beauty & Lounge visit, or follow @mnhcafeae for 20% off at the café 🍯" },
   { keys:['instagram','ig','social'], a:"Follow us! Beauty & Lounge: @mnhbeautyae (10% off) and our café right next door: @mnhcafeae (20% off) 🍯" },
   { keys:['phone','call','contact','whatsapp','number'], a:"Beauty & Lounge: WhatsApp us anytime. Café (order from your car): call 054 309 6247." },
-  { keys:['parking','car'], a:"Street parking is available along Al Hamra Street, with paid parking zones nearby in Al Khalidiya — usually easiest after 4pm. You can also order café drinks straight from your car: +971543096247." },
-  { keys:['cafe','café','coffee'], a:"Yes! Milk & Honey Café sits right next door to our Beauty & Lounge — good coffee, good moments, every day. Order from your car: +971543096247, or follow @mnhcafeae for 20% off." },
+  { keys:['parking','car'], a:"Street parking is available along Al Hamra Street, with paid parking zones nearby in Al Khalidiya — usually easiest after 4pm. You can also order café drinks straight from your car: 054 309 6247." },
+  { keys:['cafe','café','coffee'], a:"Yes! Milk & Honey Café sits right next door to our Beauty & Lounge — good coffee, good moments, every day. Order from your car: 054 309 6247, or follow @mnhcafeae for 20% off." },
   { keys:['thank', 'thanks'], a:"You're so welcome! 🍯 Anything else I can help with?" },
   { keys:['hi','hello','hey'], a:"Hi there! I'm Honey, your Milk & Honey assistant. Ask me about lashes, nails, hair, head spa, reflexology, hours, location or our Instagram discounts — or tap a quick option below." },
 ];
