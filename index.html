@@ -1,44 +1,36 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milk & Honey | Abu Dhabi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="bg-[#FDFBF7] text-[#2C2520]">
-
-    <!-- Hero Gateway -->
-    <section class="flex flex-col md:flex-row h-screen">
-        <div class="flex-1 flex flex-col items-center justify-center p-10 text-center">
-            <h1 class="text-5xl mb-4">The Beauty Boutique</h1>
-            <p class="mb-8 opacity-80">Luxury rituals, refined nails, and revitalizing hair care.</p>
-            <a href="#beauty" class="bg-[#2C2520] text-[#FDFBF7] px-8 py-3 hover:bg-[#D4A373] transition">Book Appointment</a>
+<!-- Editorial Section: The "Milk & Honey" Culture -->
+<section class="max-w-7xl mx-auto py-20 px-6">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Storytelling Image -->
+        <div class="overflow-hidden rounded-2xl shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1542834600-0e95c371077e?auto=format&fit=crop&q=80&w=1000" class="hover:scale-105 transition-transform duration-700">
         </div>
-        <div class="flex-1 flex flex-col items-center justify-center p-10 text-center bg-[#D4A373]/5">
-            <h1 class="text-5xl mb-4">The Specialty Café</h1>
-            <p class="mb-8 opacity-80">Artisan brews, signature puddings, and golden moments.</p>
-            <a href="#cafe" class="border border-[#2C2520] px-8 py-3 hover:bg-[#2C2520] hover:text-[#FDFBF7] transition">View The Menu</a>
-        </div>
-    </section>
-
-    <!-- Chatbot Widget -->
-    <div id="chat-container" class="fixed bottom-6 right-6 z-50">
-        <button id="chat-btn" class="bg-[#D4A373] text-white p-4 rounded-full shadow-lg hover:scale-105 transition">Chat</button>
-        <div id="chat-box" class="hidden w-80 bg-white border border-[#D4A373] rounded-lg shadow-2xl absolute bottom-16 right-0 overflow-hidden">
-            <div class="bg-[#D4A373] p-3 text-white font-bold">Honey - Virtual Assistant</div>
-            <div id="chat-log" class="p-4 h-48 overflow-y-auto text-sm space-y-2">
-                <p>Hello! How can I help you today?</p>
-            </div>
-            <div class="p-2 border-t grid gap-1">
-                <button onclick="respond('nail')" class="text-left hover:bg-gray-100 p-2 text-xs">How do I book a nail appointment?</button>
-                <button onclick="respond('hours')" class="text-left hover:bg-gray-100 p-2 text-xs">What are your café hours?</button>
-                <button onclick="respond('location')" class="text-left hover:bg-gray-100 p-2 text-xs">Where are you located?</button>
-            </div>
+        <!-- Brand Narrative -->
+        <div>
+            <h2 class="text-5xl font-serif mb-6">Where Beauty Meets Brew.</h2>
+            <p class="text-lg opacity-80 leading-relaxed mb-6">
+                From the meticulous detail of our nail artistry to the golden pour of our signature specialty coffee, 
+                Milk & Honey is Al Hosn’s destination for refined daily rituals.
+            </p>
+            <a href="#menu" class="inline-block border-b-2 border-[#D4A373] pb-1 hover:text-[#D4A373] transition">Explore our Story</a>
         </div>
     </div>
+</section>
 
-    <script src="scripts.js"></script>
-</body>
-</html>
+<!-- FiLLi-Style Menu Grid -->
+<section id="menu" class="py-20 bg-[#2C2520] text-[#FDFBF7]">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl text-center mb-16">The Signature Menu</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Example Menu Item -->
+            <div class="group relative overflow-hidden rounded-xl">
+                <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?q=80&w=500" class="w-full h-80 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-6 flex flex-end flex-col justify-end">
+                    <h3 class="text-2xl font-bold">Rose Latte</h3>
+                    <p class="text-[#D4A373]">Floral & Velvety • 30 AED</p>
+                </div>
+            </div>
+            <!-- Repeat for other items -->
+        </div>
+    </div>
+</section>
