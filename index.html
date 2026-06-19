@@ -1,82 +1,787 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Milk & Honey | Abu Dhabi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .hidden { display: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Milk & Honey Beauty Center — Al Hosn, Khalidiya, Abu Dhabi</title>
+<meta name="description" content="Milk & Honey Beauty Center in Al Hosn, Khalidiya — hair, skin, nails & bridal beauty in Abu Dhabi. Book your appointment today.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --espresso:#1C140C;
+    --espresso-2:#241A10;
+    --honey:#D89B3D;
+    --honey-light:#F0C775;
+    --clay:#8C5A28;
+    --ivory:#F3E9D2;
+    --milk:#FFFDF8;
+    --milk-2:#FBF3E3;
+    --line: rgba(243,233,210,0.14);
+    --line-dark: rgba(28,20,12,0.12);
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Outfit',sans-serif;
+    background:var(--espresso);
+    color:var(--ivory);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--honey); color:var(--espresso);}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .eyebrow{
+    font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--honey-light); font-weight:500;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500; line-height:1.05;}
+  h2{font-size:clamp(2rem,4.4vw,3.4rem); letter-spacing:-.01em;}
+  .italic{font-style:italic; font-weight:500;}
+  .container{max-width:1180px; margin:0 auto; padding:0 6vw;}
+  @media(min-width:1000px){.container{padding:0 4vw;}}
+  button{cursor:pointer; font-family:inherit; border:none; background:none;}
+
+  /* ===== visually-hidden focus-friendly outline ===== */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--honey-light); outline-offset:3px;
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1.1rem 6vw; transition:background .4s var(--ease), padding .3s var(--ease);
+  }
+  header.scrolled{
+    background:rgba(28,20,12,0.92); backdrop-filter: blur(10px);
+    padding:0.7rem 6vw; border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex; align-items:center; gap:.6rem; font-family:'Fraunces',serif;}
+  .logo .mark{width:34px; height:34px;}
+  .logo-text{font-size:1.15rem; letter-spacing:.01em;}
+  .logo-text em{color:var(--honey-light); font-style:italic;}
+  nav.links{display:flex; gap:2.1rem; align-items:center;}
+  nav.links a{font-size:.86rem; letter-spacing:.03em; color:var(--ivory); opacity:.85; position:relative;}
+  nav.links a:hover{opacity:1;}
+  nav.links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--honey-light);transition:width .3s var(--ease);}
+  nav.links a:hover::after{width:100%;}
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem;
+    padding:.75rem 1.5rem; border-radius:2px;
+    font-size:.82rem; letter-spacing:.04em; font-weight:500;
+    background:var(--honey); color:var(--espresso);
+    transition:transform .25s var(--ease), background .25s;
+  }
+  .btn:hover{background:var(--honey-light); transform:translateY(-2px);}
+  .btn.ghost{background:transparent; border:1px solid var(--honey); color:var(--honey-light);}
+  .btn.ghost:hover{background:rgba(216,155,61,0.12);}
+  .burger{display:none; flex-direction:column; gap:5px; width:26px;}
+  .burger span{height:1.5px; background:var(--ivory); width:100%;}
+  .mobile-menu{
+    position:fixed; inset:0; background:var(--espresso); z-index:99;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem;
+    transform:translateY(-100%); transition:transform .45s var(--ease);
+  }
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{font-family:'Fraunces',serif; font-size:1.6rem;}
+  .mobile-menu .close{position:absolute; top:1.4rem; right:6vw; font-size:1.6rem; background:none; color:var(--ivory);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    padding:9rem 6vw 5rem; overflow:hidden;
+    background:radial-gradient(120% 90% at 80% 0%, rgba(216,155,61,0.16), transparent 60%), var(--espresso);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:3rem; align-items:center; width:100%; max-width:1180px; margin:0 auto;}
+  .hero h1{font-size:clamp(2.6rem,6.2vw,5rem); color:var(--ivory);}
+  .hero h1 .line{display:block; overflow:hidden;}
+  .hero h1 .line span{display:block; transform:translateY(110%); animation:riseUp .9s var(--ease) forwards;}
+  .hero h1 .line:nth-child(1) span{animation-delay:.05s;}
+  .hero h1 .line:nth-child(2) span{animation-delay:.2s;}
+  .hero h1 .line:nth-child(3) span{animation-delay:.35s;}
+  @keyframes riseUp{to{transform:translateY(0);}}
+  .hero p.lead{margin-top:1.5rem; max-width:480px; font-size:1.05rem; color:rgba(243,233,210,0.78); line-height:1.65;}
+  .hero-cta{margin-top:2.3rem; display:flex; gap:1rem; flex-wrap:wrap;}
+  .hero-meta{margin-top:2.8rem; display:flex; gap:2.2rem; flex-wrap:wrap;}
+  .hero-meta div{font-size:.8rem; color:rgba(243,233,210,0.65);}
+  .hero-meta strong{display:block; font-family:'Fraunces',serif; font-size:1.4rem; color:var(--honey-light); font-weight:500;}
+
+  /* honey jar / drip signature visual */
+  .hero-visual{position:relative; display:flex; justify-content:center;}
+  .jar-wrap{position:relative; width:min(360px,90%);}
+  .drip{
+    position:absolute; top:-90px; left:50%; transform:translateX(-50%);
+    width:14px; opacity:0;
+  }
+  .drip path{stroke-dasharray:300; stroke-dashoffset:300; animation:pour 2.6s var(--ease) .6s forwards;}
+  .drip{animation:fadeIn .4s .5s forwards;}
+  @keyframes fadeIn{to{opacity:1;}}
+  @keyframes pour{to{stroke-dashoffset:0;}}
+  .droplet{opacity:0; animation:dropFall 1.8s ease-in 2.4s infinite;}
+  @keyframes dropFall{
+    0%{opacity:0; transform:translate(-50%,0) scale(.6);}
+    10%{opacity:1; transform:translate(-50%,0) scale(1);}
+    80%{opacity:1; transform:translate(-50%,150px) scale(1);}
+    100%{opacity:0; transform:translate(-50%,165px) scale(.8);}
+  }
+  .scroll-cue{position:absolute; bottom:2.4rem; left:6vw; font-size:.72rem; letter-spacing:.18em; color:rgba(243,233,210,0.5); display:flex; align-items:center; gap:.6rem;}
+  .scroll-cue .stick{width:1px; height:28px; background:linear-gradient(var(--honey-light), transparent); animation:stick 2s infinite;}
+  @keyframes stick{0%,100%{opacity:.3} 50%{opacity:1}}
+
+  /* ===== SECTION wrappers ===== */
+  section{padding:7rem 0;}
+  .section-light{background:var(--milk); color:var(--espresso);}
+  .section-light .eyebrow{color:var(--clay);}
+  .section-light h2{color:var(--espresso);}
+  .head-row{display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; margin-bottom:3.4rem; flex-wrap:wrap;}
+  .head-row p{max-width:380px; font-size:.96rem; line-height:1.6; opacity:.75;}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:4rem; align-items:center;}
+  .about-grid p{font-size:1.02rem; line-height:1.75; opacity:.85; margin-top:1.1rem;}
+  .stat-row{display:flex; gap:2.4rem; margin-top:2.2rem; flex-wrap:wrap;}
+  .stat-row div strong{font-family:'Fraunces',serif; font-size:2.1rem; display:block; color:var(--clay); font-weight:500;}
+  .stat-row div span{font-size:.78rem; letter-spacing:.04em; opacity:.65;}
+  .comb-art{position:relative; height:380px;}
+  .comb-art svg{width:100%; height:100%;}
+
+  /* ===== SERVICES — honeycomb grid (signature) ===== */
+  .hive{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0;
+    margin-top:1rem;
+  }
+  .hex{
+    position:relative; width:260px; margin:-14px 6px;
+    clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 25%, 0% 75%);
+  }
+  .hex:nth-child(odd){margin-top:50px;}
+  .hex-inner{
+    height:300px; background:var(--espresso-2);
+    border:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    padding:2rem 1.6rem; gap:.6rem; transition:background .35s, transform .35s;
+  }
+  .hex:hover .hex-inner{background:var(--honey); transform:scale(1.04);}
+  .hex:hover .hex-inner *{color:var(--espresso) !important;}
+  .hex-icon{width:42px; height:42px; color:var(--honey-light); transition:color .3s;}
+  .hex:hover .hex-icon{color:var(--espresso);}
+  .hex-inner h3{font-size:1.15rem; color:var(--ivory); font-weight:500;}
+  .hex-inner p{font-size:.82rem; opacity:.7; line-height:1.5; color:var(--ivory);}
+  .hex-inner .price{font-size:.78rem; letter-spacing:.05em; color:var(--honey-light); margin-top:.3rem;}
+
+  @media(max-width:720px){
+    .hive{display:grid; grid-template-columns:1fr 1fr; gap:.8rem;}
+    .hex{clip-path:none; width:100%; margin:0;}
+    .hex:nth-child(odd){margin-top:0;}
+    .hex-inner{height:auto; padding:1.6rem 1rem; border-radius:10px;}
+  }
+
+  /* ===== GALLERY / IG ===== */
+  .ig-strip{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;}
+  .ig-card{
+    aspect-ratio:1/1.1; border-radius:6px; position:relative; overflow:hidden;
+    display:flex; align-items:flex-end; padding:1rem;
+    color:#fff; font-size:.78rem; font-weight:500;
+  }
+  .ig-card::before{content:'';position:absolute; inset:0; opacity:.92;}
+  .ig-card span{position:relative; z-index:1; background:rgba(0,0,0,.35); padding:.3rem .6rem; border-radius:4px; backdrop-filter:blur(2px);}
+  .tone1::before{background:linear-gradient(160deg,#3a2716,#D89B3D);}
+  .tone2::before{background:linear-gradient(160deg,#241a10,#8C5A28);}
+  .tone3::before{background:linear-gradient(160deg,#5b3a17,#F0C775);}
+  .tone4::before{background:linear-gradient(160deg,#1c140c,#b3742d);}
+  @media(max-width:720px){.ig-strip{grid-template-columns:repeat(2,1fr);}}
+  .ig-handles{display:flex; gap:1.2rem; margin-top:2.4rem; flex-wrap:wrap;}
+  .ig-pill{
+    display:flex; align-items:center; gap:.6rem; padding:.7rem 1.2rem;
+    border:1px solid var(--line-dark); border-radius:30px; font-size:.86rem;
+  }
+  .section-light .ig-pill{border-color:rgba(28,20,12,0.15);}
+
+  /* ===== TESTIMONIALS ===== */
+  .test-track{display:flex; gap:1.4rem; overflow-x:auto; padding-bottom:1rem; scroll-snap-type:x mandatory;}
+  .test-card{
+    flex:0 0 320px; scroll-snap-align:start; background:var(--espresso-2);
+    border:1px solid var(--line); padding:2rem; border-radius:4px;
+  }
+  .stars{color:var(--honey-light); font-size:.9rem; letter-spacing:.1em;}
+  .test-card p{margin-top:1rem; font-size:.92rem; line-height:1.6; opacity:.85;}
+  .test-card .who{margin-top:1.2rem; font-size:.8rem; opacity:.6;}
+
+  /* ===== BOOKING ===== */
+  .book-wrap{display:grid; grid-template-columns:1fr 1fr; gap:3.5rem;}
+  .book-info p{margin-top:1rem; line-height:1.7; opacity:.8; font-size:.95rem;}
+  .info-row{display:flex; gap:1rem; align-items:flex-start; margin-top:1.6rem;}
+  .info-row svg{flex-shrink:0; width:20px; height:20px; color:var(--honey-light); margin-top:2px;}
+  .hours-table{margin-top:1.6rem; border-top:1px solid var(--line);}
+  .hours-table div{display:flex; justify-content:space-between; padding:.55rem 0; border-bottom:1px solid var(--line); font-size:.88rem; opacity:.85;}
+
+  form.book-form{background:var(--espresso-2); border:1px solid var(--line); padding:2.4rem; border-radius:6px;}
+  .field{margin-bottom:1.1rem;}
+  .field label{display:block; font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:.4rem; color:rgba(243,233,210,0.7);}
+  .field input, .field select, .field textarea{
+    width:100%; padding:.75rem .9rem; background:var(--espresso); border:1px solid var(--line);
+    color:var(--ivory); font-family:inherit; font-size:.92rem; border-radius:3px;
+  }
+  .field textarea{resize:vertical; min-height:80px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+  .form-msg{margin-top:1rem; font-size:.85rem; color:var(--honey-light); display:none;}
+
+  /* ===== MAP ===== */
+  .map-wrap{border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark);}
+  .map-wrap iframe{width:100%; height:420px; border:0; filter:grayscale(.15) sepia(.12);}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--espresso-2); padding:4rem 0 2rem; border-top:1px solid var(--line);}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:2.5rem;}
+  .foot-grid h4{font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--honey-light); margin-bottom:1rem;}
+  .foot-grid a, .foot-grid p{font-size:.86rem; opacity:.7; display:block; margin-bottom:.55rem;}
+  .foot-grid a:hover{opacity:1; color:var(--honey-light);}
+  .foot-bottom{margin-top:3rem; padding-top:1.6rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; font-size:.78rem; opacity:.55;}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:980px){
+    nav.links, header .btn{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .hero-visual{order:-1; margin-bottom:1rem; transform:scale(.8);}
+    .about-grid, .book-wrap{grid-template-columns:1fr;}
+    .comb-art{height:240px;}
+  }
+  @media(max-width:520px){
+    .ig-strip{grid-template-columns:repeat(2,1fr);}
+    .row2{grid-template-columns:1fr;}
+    .hero{padding-top:7rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ===== Floating actions: WhatsApp + Chatbot ===== */
+  .floaters{position:fixed; bottom:1.6rem; right:1.6rem; z-index:200; display:flex; flex-direction:column; gap:.8rem; align-items:flex-end;}
+  .fab{
+    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.35); transition:transform .25s var(--ease);
+  }
+  .fab:hover{transform:translateY(-3px) scale(1.05);}
+  .fab.whatsapp{background:#25D366; color:#fff;}
+  .fab.chat{background:var(--honey); color:var(--espresso);}
+  .fab svg{width:26px; height:26px;}
+
+  /* Chat widget */
+  .chat-panel{
+    position:fixed; bottom:6.6rem; right:1.6rem; width:340px; max-width:88vw; height:460px;
+    background:var(--milk); color:var(--espresso); border-radius:14px; overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.45); display:flex; flex-direction:column;
+    transform:translateY(20px) scale(.96); opacity:0; pointer-events:none; transition:all .3s var(--ease);
+    z-index:201;
+  }
+  .chat-panel.open{transform:translateY(0) scale(1); opacity:1; pointer-events:auto;}
+  .chat-head{background:var(--espresso); color:var(--ivory); padding:1rem 1.1rem; display:flex; align-items:center; gap:.7rem;}
+  .chat-head .dot{width:8px; height:8px; border-radius:50%; background:#4CD964;}
+  .chat-head strong{font-family:'Fraunces',serif; font-weight:500; font-size:1rem;}
+  .chat-head span{font-size:.72rem; opacity:.65; display:block;}
+  .chat-close{margin-left:auto; background:none; color:var(--ivory); font-size:1.1rem; opacity:.7;}
+  .chat-body{flex:1; overflow-y:auto; padding:1rem; display:flex; flex-direction:column; gap:.7rem; background:var(--milk-2);}
+  .msg{max-width:85%; padding:.6rem .85rem; border-radius:10px; font-size:.85rem; line-height:1.45;}
+  .msg.bot{background:#fff; border:1px solid var(--line-dark); align-self:flex-start; border-bottom-left-radius:2px;}
+  .msg.user{background:var(--honey); color:var(--espresso); align-self:flex-end; border-bottom-right-radius:2px;}
+  .quick-replies{display:flex; flex-wrap:wrap; gap:.4rem; padding:0 1rem .7rem;}
+  .qr-btn{font-size:.74rem; padding:.4rem .7rem; border:1px solid var(--clay); border-radius:20px; color:var(--clay); background:#fff;}
+  .qr-btn:hover{background:var(--honey); color:#fff; border-color:var(--honey);}
+  .chat-input{display:flex; border-top:1px solid var(--line-dark); background:#fff;}
+  .chat-input input{flex:1; border:none; padding:.85rem 1rem; font-family:inherit; font-size:.86rem; background:transparent; color:var(--espresso);}
+  .chat-input input:focus{outline:none;}
+  .chat-input button{padding:0 1.1rem; color:var(--clay); font-weight:600;}
+</style>
 </head>
-<body class="bg-[#FDFBF7] text-[#2C2520]">
+<body>
 
-    <!-- HERO -->
-    <header class="flex flex-col md:flex-row h-screen">
-        <div class="flex-1 bg-cover bg-center flex flex-col items-center justify-center p-10 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1200');">
-            <h1 class="text-5xl text-white mb-6">The Beauty Boutique</h1>
-            <a href="#services" class="bg-[#D4A373] text-white px-8 py-3 hover:opacity-90 transition">View Services</a>
-        </div>
-        <div class="flex-1 bg-cover bg-center flex flex-col items-center justify-center p-10 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=1200');">
-            <h1 class="text-5xl text-white mb-6">The Specialty Café</h1>
-            <a href="#menu" class="bg-white text-[#2C2520] px-8 py-3 hover:bg-gray-100 transition">Explore Menu</a>
-        </div>
-    </header>
+<!-- ============ HEADER ============ -->
+<header id="siteHeader">
+  <a href="#top" class="logo">
+    <svg class="mark" viewBox="0 0 40 40" fill="none">
+      <path d="M20 4 C20 4 8 16 8 24 C8 31 13.5 36 20 36 C26.5 36 32 31 32 24 C32 16 20 4 20 4Z" fill="none" stroke="#D89B3D" stroke-width="1.6"/>
+      <path d="M13 24c0 4 3 8 7 8" stroke="#F0C775" stroke-width="1.3" fill="none"/>
+    </svg>
+    <span class="logo-text">Milk <em>&amp;</em> Honey</span>
+  </a>
+  <nav class="links">
+    <a href="#about">Story</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#book">Visit</a>
+  </nav>
+  <a href="#book" class="btn">Book Appointment</a>
+  <button class="burger" id="burgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+</header>
 
-    <!-- SERVICES -->
-    <section id="services" class="py-20 max-w-6xl mx-auto px-6">
-        <h2 class="text-4xl text-center mb-12">Beauty Services</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="border p-4"><img src="https://images.unsplash.com/photo-1632345031435-8727f6897553?w=500" class="w-full h-60 object-cover mb-4">
-                <h3 class="text-xl">Gel Manicure</h3><p>150 AED</p></div>
-            <div class="border p-4"><img src="https://images.unsplash.com/photo-1595476108422-9214732177d4?w=500" class="w-full h-60 object-cover mb-4">
-                <h3 class="text-xl">Hair Ritual</h3><p>350 AED</p></div>
-            <div class="border p-4"><img src="https://images.unsplash.com/photo-1522335789103-801726055d7f?w=500" class="w-full h-60 object-cover mb-4">
-                <h3 class="text-xl">Lash Styling</h3><p>200 AED</p></div>
-        </div>
-    </section>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu" aria-label="Close menu">&times;</button>
+  <a href="#about">Story</a>
+  <a href="#services">Services</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#book">Visit</a>
+  <a href="#book" class="btn">Book Appointment</a>
+</div>
 
-    <!-- MENU -->
-    <section id="menu" class="py-20 bg-[#2C2520] text-white">
-        <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-4xl text-center mb-12">Signature Menu</h2>
-            <div class="space-y-6">
-                <div class="flex justify-between border-b border-gray-600 pb-4"><span>Iced Spanish Latte</span><span class="text-[#D4A373]">28 AED</span></div>
-                <div class="flex justify-between border-b border-gray-600 pb-4"><span>Honey Oat Pudding</span><span class="text-[#D4A373]">35 AED</span></div>
-                <div class="flex justify-between border-b border-gray-600 pb-4"><span>Artisan Açaí Bowl</span><span class="text-[#D4A373]">45 AED</span></div>
-            </div>
-        </div>
-    </section>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Al Hosn · Khalidiya · Abu Dhabi</p>
+      <h1>
+        <span class="line"><span>Beauty, poured</span></span>
+        <span class="line"><span class="italic">slow &amp; golden,</span></span>
+        <span class="line"><span>like honey.</span></span>
+      </h1>
+      <p class="lead">Milk &amp; Honey Beauty Center is a quiet corner of Khalidiya devoted to hair, skin, nails and bridal artistry — unrushed rituals, warm hands, honest results.</p>
+      <div class="hero-cta">
+        <a href="#book" class="btn">Reserve Your Chair</a>
+        <a href="https://wa.me/9710000000000" target="_blank" rel="noopener" class="btn ghost">Chat on WhatsApp</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>4.9 / 5</strong>guest rating</div>
+        <div><strong>10+ yrs</strong>in Al Hisn, Abu Dhabi</div>
+        <div><strong>6 days</strong>open weekly</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="jar-wrap">
+        <svg class="drip" viewBox="0 0 14 100" fill="none">
+          <path d="M7 0 V70" stroke="#D89B3D" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="droplet" style="position:absolute; top:60px; left:50%; width:10px; height:14px; background:var(--honey); border-radius:0 50% 50% 50%; transform:translateX(-50%) rotate(45deg);"></div>
+        <svg viewBox="0 0 300 360" width="100%">
+          <ellipse cx="150" cy="330" rx="95" ry="14" fill="#000" opacity="0.25"/>
+          <path d="M65 120 Q60 320 150 330 Q240 320 235 120 Z" fill="#241A10" stroke="#D89B3D" stroke-width="1.5" opacity="0.5"/>
+          <path d="M70 150 Q66 310 150 320 Q234 310 230 150 Z" fill="#B97A2A" opacity="0.85"/>
+          <path d="M70 150 Q66 230 90 270 Q120 300 150 305 Q120 295 100 260 Q80 220 80 150 Z" fill="#F0C775" opacity="0.4"/>
+          <rect x="55" y="95" width="190" height="34" rx="6" fill="#1C140C" stroke="#D89B3D" stroke-width="1.5"/>
+          <rect x="95" y="60" width="110" height="40" rx="14" fill="none" stroke="#D89B3D" stroke-width="6"/>
+          <text x="150" y="225" text-anchor="middle" font-family="Fraunces, serif" font-size="22" fill="#1C140C" opacity="0.8" font-style="italic">M &amp; H</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="stick"></span> SCROLL</div>
+</section>
 
-    <!-- CHATBOT -->
-    <div id="chat-widget" class="fixed bottom-6 right-6">
-        <button id="toggle-chat" class="bg-[#D4A373] text-white p-4 rounded-full shadow-lg">Ask Honey</button>
-        <div id="chat-box" class="hidden w-80 bg-white border border-[#D4A373] absolute bottom-16 right-0 shadow-2xl rounded-lg overflow-hidden">
-            <div class="bg-[#D4A373] p-3 text-white font-bold">Honey - Virtual Assistant</div>
-            <div id="chat-log" class="p-4 h-40 overflow-y-auto text-sm text-gray-700">Hi! How can I help?</div>
-            <div class="p-2 border-t grid gap-2">
-                <button onclick="ask('book')" class="bg-gray-100 p-2 text-left text-xs">How to book nails?</button>
-                <button onclick="ask('hours')" class="bg-gray-100 p-2 text-left text-xs">What are your hours?</button>
-            </div>
-        </div>
+<!-- ============ ABOUT ============ -->
+<section class="section-light" id="about">
+  <div class="container about-grid">
+    <div class="comb-art">
+      <svg viewBox="0 0 320 380" width="100%" height="100%">
+        <g fill="none" stroke="#8C5A28" stroke-width="1.4" opacity="0.55">
+          <polygon points="80,10 130,40 130,100 80,130 30,100 30,40"/>
+          <polygon points="160,10 210,40 210,100 160,130 110,100 110,40"/>
+          <polygon points="240,10 290,40 290,100 240,130 190,100 190,40"/>
+          <polygon points="40,130 90,160 90,220 40,250 -10,220 -10,160"/>
+          <polygon points="120,130 170,160 170,220 120,250 70,220 70,160"/>
+          <polygon points="200,130 250,160 250,220 200,250 150,220 150,160"/>
+          <polygon points="280,130 330,160 330,220 280,250 230,220 230,160"/>
+          <polygon points="80,250 130,280 130,340 80,370 30,340 30,280"/>
+          <polygon points="160,250 210,280 210,340 160,370 110,340 110,280"/>
+          <polygon points="240,250 290,280 290,340 240,370 190,340 190,280"/>
+        </g>
+        <polygon points="160,130 210,160 210,220 160,250 110,220 110,160" fill="#D89B3D" opacity="0.9"/>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow">Our Story</p>
+      <h2>Two ingredients.<br><span class="italic">One philosophy.</span></h2>
+      <p>Milk softens. Honey heals. Since opening our doors on Al Hamra Street in Al Hisn, Khalidiya, we built every treatment around that same balance — gentle enough for sensitive skin, effective enough for real transformation.</p>
+      <p>Our stylists and therapists train across Europe and the Gulf, blending Korean skincare precision with Arabian beauty rituals passed down through generations. Every visit is paced like a honeycomb is built: cell by cell, with care.</p>
+      <div class="stat-row">
+        <div><strong>4.9★</strong><span>Average client rating</span></div>
+        <div><strong>2,500+</strong><span>Treatments delivered yearly</span></div>
+        <div><strong>15</strong><span>Signature services</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES (honeycomb) ============ -->
+<section id="services">
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <p class="eyebrow">What We Offer</p>
+        <h2>The honeycomb<br><span class="italic">of services.</span></h2>
+      </div>
+      <p>Six cells, one hive — hover any to explore. Every treatment is customised after a short skin &amp; hair consultation.</p>
     </div>
 
-    <script>
-        const btn = document.getElementById('toggle-chat');
-        const box = document.getElementById('chat-box');
-        btn.onclick = () => box.classList.toggle('hidden');
-        
-        function ask(type) {
-            const log = document.getElementById('chat-log');
-            const res = {
-                book: "Book via Fresha: https://www.fresha.com/a/milk-honey-beauty-salon...",
-                hours: "We are open daily, 8 AM - 10 PM."
-            };
-            log.innerHTML += `<p class="mt-2 text-[#D4A373]"><strong>Honey:</strong> ${res[type]}</p>`;
-        }
-    </script>
+    <div class="hive">
+      <div class="hex">
+        <div class="hex-inner">
+          <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3c0 4 3 5 3 9s-3 5-3 9M12 3c0 4 3 5 3 9s-3 5-3 9M18 3c0 4 3 5 3 9s-3 5-3 9"/></svg>
+          <h3>Hair Studio</h3>
+          <p>Cut, colour, balayage, keratin &amp; juju blow-dry finishing.</p>
+          <span class="price">From AED 150</span>
+        </div>
+      </div>
+      <div class="hex">
+        <div class="hex-inner">
+          <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><path d="M9 12a3 3 0 1 0 6 0 3 3 0 1 0-6 0"/></svg>
+          <h3>Facial &amp; Skin</h3>
+          <p>Deep-cleansing, brightening &amp; anti-ageing facials, HydraFacial.</p>
+          <span class="price">From AED 220</span>
+        </div>
+      </div>
+      <div class="hex">
+        <div class="hex-inner">
+          <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c-3 4-7 8-7 12a7 7 0 0 0 14 0c0-4-4-8-7-12Z"/></svg>
+          <h3>Nails &amp; Hands</h3>
+          <p>Gel, builder, extensions &amp; nail art with Milk &amp; Honey precision.</p>
+          <span class="price">From AED 90</span>
+        </div>
+      </div>
+      <div class="hex">
+        <div class="hex-inner">
+          <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M8 6h8M8 18h8"/></svg>
+          <h3>Threading &amp; Brows</h3>
+          <p>Eyebrow shaping, lamination, tinting &amp; full threading menu.</p>
+          <span class="price">From AED 40</span>
+        </div>
+      </div>
+      <div class="hex">
+        <div class="hex-inner">
+          <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"/></svg>
+          <h3>Bridal Beauty</h3>
+          <p>Full bridal trial &amp; day-of glam, hair &amp; make-up packages.</p>
+          <span class="price">From AED 900</span>
+        </div>
+      </div>
+      <div class="hex">
+        <div class="hex-inner">
+          <svg class="hex-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 19V8l8-5 8 5v11M4 19h16M9 19v-6h6v6"/></svg>
+          <h3>Spa &amp; Massage</h3>
+          <p>Honey body polish, hammam ritual &amp; relaxation massage.</p>
+          <span class="price">From AED 180</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY / INSTAGRAM ============ -->
+<section class="section-light" id="gallery">
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <p class="eyebrow">Follow Along</p>
+        <h2>Fresh from<br><span class="italic">our chairs.</span></h2>
+      </div>
+      <p>We post real results, behind-the-scenes &amp; cafe moments daily across our two pages — beauty centre and our M&amp;H café next door.</p>
+    </div>
+    <div class="ig-strip">
+      <div class="ig-card tone1"><span>Bridal glam day ✨</span></div>
+      <div class="ig-card tone2"><span>Juju blow-dry finish</span></div>
+      <div class="ig-card tone3"><span>Honey facial ritual</span></div>
+      <div class="ig-card tone4"><span>Fresh gel set 💛</span></div>
+    </div>
+    <div class="ig-handles">
+      <a class="ig-pill" href="https://www.instagram.com/mnhbeautyae/" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        @mnhbeautyae
+      </a>
+      <a class="ig-pill" href="https://www.instagram.com/mnhcafeae/" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        @mnhcafeae
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="reviews">
+  <div class="container">
+    <div class="head-row">
+      <div>
+        <p class="eyebrow">Guest Notes</p>
+        <h2>Word travels<br><span class="italic">like honey.</span></h2>
+      </div>
+    </div>
+    <div class="test-track">
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>"The best in all services, especially the juju blow-dry. I haven't found anything close to it anywhere else in Abu Dhabi."</p>
+        <div class="who">— Fresha guest, Al Hisn branch</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>"Service was excellent from the moment I walked in. Clean, calm and exactly the relaxing visit I needed before the weekend."</p>
+        <div class="who">— Returning client, Khalidiya</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>"My stylist really knew what she was doing. Booked my bridal trial here and I'm not looking anywhere else for the big day."</p>
+        <div class="who">— Bride-to-be, 2026</div>
+      </div>
+      <div class="test-card">
+        <div class="stars">★★★★★</div>
+        <p>"Quiet, professional, and the honey facial genuinely left my skin glowing for days. Worth every minute."</p>
+        <div class="who">— Facial client, Abu Dhabi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING ============ -->
+<section id="book">
+  <div class="container book-wrap">
+    <div class="book-info">
+      <p class="eyebrow">Visit Us</p>
+      <h2>Come sit<br><span class="italic">in the hive.</span></h2>
+      <p>Walk-ins welcome, though we recommend booking ahead for hair colour, bridal trials &amp; weekend slots.</p>
+
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-7.5-7-12a7 7 0 1 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <div>Building #68, Ground Floor, Al Hamra St, Al Hosn — Al Khalidiya, Abu Dhabi</div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L13 14l5 2v4a2 2 0 0 1-2 2C9.5 22 2 14.5 2 7a2 2 0 0 1 1-2Z"/></svg>
+        <div>+971 2 000 0000 &nbsp;·&nbsp; <a href="https://wa.me/9710000000000" target="_blank" rel="noopener" style="color:var(--honey-light);">WhatsApp us</a></div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        <div>hello@milkandhoney-ad.com</div>
+      </div>
+
+      <div class="hours-table">
+        <div><span>Saturday – Thursday</span><span>10:00 — 22:00</span></div>
+        <div><span>Friday</span><span>14:00 — 22:00</span></div>
+        <div><span>Public Holidays</span><span>11:00 — 20:00</span></div>
+      </div>
+    </div>
+
+    <form class="book-form" id="bookForm">
+      <p class="eyebrow" style="margin-bottom:1.2rem;">Request an Appointment</p>
+      <div class="row2">
+        <div class="field"><label for="name">Full name</label><input id="name" required placeholder="Your name"></div>
+        <div class="field"><label for="phone">Phone</label><input id="phone" required placeholder="+971 5x xxx xxxx"></div>
+      </div>
+      <div class="field"><label for="service">Service</label>
+        <select id="service">
+          <option>Hair Studio</option>
+          <option>Facial &amp; Skin</option>
+          <option>Nails &amp; Hands</option>
+          <option>Threading &amp; Brows</option>
+          <option>Bridal Beauty</option>
+          <option>Spa &amp; Massage</option>
+        </select>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="date">Preferred date</label><input id="date" type="date"></div>
+        <div class="field"><label for="time">Preferred time</label><input id="time" type="time"></div>
+      </div>
+      <div class="field"><label for="notes">Notes (optional)</label><textarea id="notes" placeholder="Tell us anything we should know"></textarea></div>
+      <button type="submit" class="btn" style="width:100%; justify-content:center;">Send Request</button>
+      <p class="form-msg" id="formMsg">Thank you! Your request has been noted — our team will confirm by WhatsApp or phone shortly. 🍯</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ MAP ============ -->
+<div class="map-wrap">
+  <iframe
+    title="Milk & Honey Beauty Center location map"
+    src="https://www.google.com/maps?q=Al+Hosn+Khalidiya+Abu+Dhabi&output=embed"
+    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container foot-grid">
+    <div>
+      <a href="#top" class="logo" style="margin-bottom:1rem;">
+        <svg class="mark" viewBox="0 0 40 40" fill="none" width="30" height="30">
+          <path d="M20 4 C20 4 8 16 8 24 C8 31 13.5 36 20 36 C26.5 36 32 31 32 24 C32 16 20 4 20 4Z" fill="none" stroke="#D89B3D" stroke-width="1.6"/>
+        </svg>
+        <span class="logo-text">Milk &amp; Honey</span>
+      </a>
+      <p style="opacity:.65; font-size:.86rem; max-width:260px;">A beauty center in Al Hosn, Khalidiya — hair, skin, nails &amp; bridal beauty, made unhurried.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="#about">Our Story</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <a href="https://www.instagram.com/mnhbeautyae/" target="_blank" rel="noopener">Instagram · Beauty</a>
+      <a href="https://www.instagram.com/mnhcafeae/" target="_blank" rel="noopener">Instagram · Café</a>
+      <a href="https://wa.me/9710000000000" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <p>Al Hamra St, Al Hosn,<br>Al Khalidiya, Abu Dhabi</p>
+      <a href="#book">Book an appointment →</a>
+    </div>
+  </div>
+  <div class="container foot-bottom">
+    <span>© 2026 Milk &amp; Honey Beauty Center. All rights reserved.</span>
+    <span>Crafted with care in Abu Dhabi.</span>
+  </div>
+</footer>
+
+<!-- ============ FLOATING ACTIONS ============ -->
+<div class="floaters">
+  <a class="fab whatsapp" href="https://wa.me/9710000000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.85.5 3.58 1.36 5.06L2 22l5.21-1.37a9.9 9.9 0 0 0 4.83 1.23h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.1h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.02-.2-.31a8.17 8.17 0 0 1-1.27-4.34c0-4.52 3.68-8.2 8.23-8.2 2.2 0 4.27.86 5.82 2.41a8.13 8.13 0 0 1 2.41 5.8c0 4.52-3.68 8.18-8.23 8.18zm4.5-6.13c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.15.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.21-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.12-.12.27-.31.4-.46.13-.16.18-.27.27-.45.08-.18.04-.33-.04-.46-.08-.12-.5-1.21-.68-1.66-.18-.43-.36-.37-.5-.38-.13 0-.28-.01-.43-.01-.16 0-.4.06-.62.31-.21.25-.83.81-.83 1.95s.84 2.24.96 2.4c.12.16 1.67 2.55 4.05 3.47 2.38.93 2.38.62 2.81.58.43-.04 1.41-.58 1.61-1.13.2-.56.2-1.04.14-1.13-.06-.1-.23-.16-.48-.28z"/></svg>
+  </a>
+  <button class="fab chat" id="chatToggle" aria-label="Open chat assistant" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.38 8.38 0 0 1-1.9 5.4 8.5 8.5 0 0 1-6.6 3.1A8.5 8.5 0 0 1 4 16.9L3 21l4.4-1a8.4 8.4 0 0 0 4.1 1.1 8.5 8.5 0 0 0 8.5-8.5 8.38 8.38 0 0 0-.5-2.9"/><path d="M21 11.5A8.5 8.5 0 0 0 12.5 3a8.5 8.5 0 0 0-8.4 9.8"/></svg>
+  </button>
+</div>
+
+<!-- ============ CHAT PANEL ============ -->
+<div class="chat-panel" id="chatPanel" role="dialog" aria-label="Honey, your booking assistant">
+  <div class="chat-head">
+    <span class="dot"></span>
+    <div>
+      <strong>Honey 🍯</strong>
+      <span>Milk &amp; Honey assistant · usually replies instantly</span>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="quick-replies" id="quickReplies"></div>
+  <form class="chat-input" id="chatForm">
+    <input id="chatInput" placeholder="Ask about hours, prices, location…" autocomplete="off">
+    <button type="submit">Send</button>
+  </form>
+</div>
+
+<script>
+/* ===================== UI behaviour ===================== */
+const headerEl = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  headerEl.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+const burger = document.getElementById('burgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+burger.addEventListener('click', ()=> mobileMenu.classList.add('open'));
+closeMenu.addEventListener('click', ()=> mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.remove('open')));
+
+/* booking form (front-end only demo submission) */
+const bookForm = document.getElementById('bookForm');
+const formMsg = document.getElementById('formMsg');
+bookForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  formMsg.style.display = 'block';
+  bookForm.querySelector('button[type="submit"]').textContent = 'Request Sent ✓';
+  setTimeout(()=>{ bookForm.reset(); }, 600);
+});
+
+/* ===================== Honey Bot — free, rule-based AI chat assistant ===================== */
+/* No external API or key required. Keyword-matched responses + quick-reply buttons. */
+const chatToggle = document.getElementById('chatToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatClose = document.getElementById('chatClose');
+const chatBody = document.getElementById('chatBody');
+const chatForm = document.getElementById('chatForm');
+const chatInput = document.getElementById('chatInput');
+const quickReplies = document.getElementById('quickReplies');
+
+const KB = [
+  { keys:['hour','open','close','timing','time'], a:"We're open Saturday–Thursday 10:00–22:00, and Friday 14:00–22:00. Public holidays run 11:00–20:00." },
+  { keys:['location','address','where','direction','map'], a:"You'll find us at Building #68, Ground Floor, Al Hamra Street, Al Hosn — Al Khalidiya, Abu Dhabi. Scroll down to the map section for directions! 📍" },
+  { keys:['price','cost','how much','rate'], a:"Prices start from AED 40 for threading, AED 90 for nails, AED 150 for hair, AED 180 for spa, AED 220 for facials, and AED 900 for bridal packages. Final pricing depends on hair length/condition — happy to confirm exactly via WhatsApp." },
+  { keys:['book','appointment','reserve','slot'], a:"I can help with that! Scroll to the 'Visit Us' section and fill the short form, or tap below to WhatsApp us directly and we'll lock in your slot." },
+  { keys:['bridal','wedding','bride'], a:"Congratulations! 🤍 Our bridal package includes a full trial plus day-of hair & make-up, starting from AED 900. Want me to flag this to our bridal team on WhatsApp?" },
+  { keys:['hair','color','colour','keratin','blow dry','blowdry','balayage'], a:"Our Hair Studio covers cuts, colour, balayage, keratin smoothing and our signature juju blow-dry — prices start from AED 150." },
+  { keys:['facial','skin','hydrafacial'], a:"Our facials start from AED 220 and include deep-cleansing, brightening and anti-ageing options, plus HydraFacial. Want a recommendation based on your skin type?" },
+  { keys:['nail','gel','manicure','pedicure'], a:"Nails & Hands start from AED 90 — gel, builder gel, extensions and nail art all available." },
+  { keys:['massage','spa','hammam'], a:"Our Spa & Massage menu starts from AED 180, including a honey body polish and a relaxing hammam ritual." },
+  { keys:['instagram','ig','social'], a:"Follow us! Beauty page: @mnhbeautyae and our café next door: @mnhcafeae 🍯" },
+  { keys:['phone','call','contact','whatsapp','number'], a:"You can reach us on WhatsApp or call +971 2 000 0000 — tap the green WhatsApp button anytime." },
+  { keys:['parking','car'], a:"Street parking is available along Al Hamra Street, with paid parking zones nearby in Al Khalidiya — usually easiest after 4pm." },
+  { keys:['cafe','café','coffee'], a:"Yes! Milk & Honey Café sits right alongside us — perfect for a coffee before or after your appointment. Check @mnhcafeae on Instagram." },
+  { keys:['thank', 'thanks'], a:"You're so welcome! 🍯 Anything else I can help with?" },
+  { keys:['hi','hello','hey'], a:"Hi there! I'm Honey, your Milk & Honey assistant. Ask me about our services, prices, hours or location — or tap a quick option below." },
+];
+
+const FALLBACK = "I might not have that detail yet, but our team will know! Tap 'WhatsApp us' below and we'll answer personally within minutes.";
+
+function findAnswer(text){
+  const t = text.toLowerCase();
+  for(const item of KB){
+    if(item.keys.some(k=>t.includes(k))) return item.a;
+  }
+  return FALLBACK;
+}
+
+function addMsg(text, who){
+  const div = document.createElement('div');
+  div.className = 'msg ' + who;
+  div.textContent = text;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function botReply(text){
+  setTimeout(()=>{ addMsg(text, 'bot'); }, 450);
+}
+
+const QUICK = ["Opening hours","Prices","Location","Book an appointment"];
+function renderQuickReplies(){
+  quickReplies.innerHTML = '';
+  QUICK.forEach(q=>{
+    const b = document.createElement('button');
+    b.className = 'qr-btn';
+    b.textContent = q;
+    b.addEventListener('click', ()=>{
+      addMsg(q, 'user');
+      botReply(findAnswer(q));
+    });
+    quickReplies.appendChild(b);
+  });
+}
+
+let chatStarted = false;
+function openChat(){
+  chatPanel.classList.add('open');
+  chatToggle.setAttribute('aria-expanded','true');
+  if(!chatStarted){
+    chatStarted = true;
+    addMsg("Hi! I'm Honey 🍯 — ask me about services, prices, hours or location.", 'bot');
+    renderQuickReplies();
+  }
+  chatInput.focus();
+}
+chatToggle.addEventListener('click', ()=>{
+  chatPanel.classList.contains('open') ? closeChat() : openChat();
+});
+function closeChat(){
+  chatPanel.classList.remove('open');
+  chatToggle.setAttribute('aria-expanded','false');
+}
+chatClose.addEventListener('click', closeChat);
+
+chatForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const val = chatInput.value.trim();
+  if(!val) return;
+  addMsg(val, 'user');
+  chatInput.value = '';
+  botReply(findAnswer(val));
+});
+</script>
 </body>
 </html>
