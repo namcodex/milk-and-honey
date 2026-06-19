@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk & Honey | Abu Dhabi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#FDFBF7] text-[#2C2520]">
+
+    <!-- Hero Gateway -->
+    <section class="flex flex-col md:flex-row h-screen">
+        <div class="flex-1 flex flex-col items-center justify-center p-10 text-center">
+            <h1 class="text-5xl mb-4">The Beauty Boutique</h1>
+            <p class="mb-8 opacity-80">Luxury rituals, refined nails, and revitalizing hair care.</p>
+            <a href="#beauty" class="bg-[#2C2520] text-[#FDFBF7] px-8 py-3 hover:bg-[#D4A373] transition">Book Appointment</a>
+        </div>
+        <div class="flex-1 flex flex-col items-center justify-center p-10 text-center bg-[#D4A373]/5">
+            <h1 class="text-5xl mb-4">The Specialty Café</h1>
+            <p class="mb-8 opacity-80">Artisan brews, signature puddings, and golden moments.</p>
+            <a href="#cafe" class="border border-[#2C2520] px-8 py-3 hover:bg-[#2C2520] hover:text-[#FDFBF7] transition">View The Menu</a>
+        </div>
+    </section>
+
+    <!-- Chatbot Widget -->
+    <div id="chat-container" class="fixed bottom-6 right-6 z-50">
+        <button id="chat-btn" class="bg-[#D4A373] text-white p-4 rounded-full shadow-lg hover:scale-105 transition">Chat</button>
+        <div id="chat-box" class="hidden w-80 bg-white border border-[#D4A373] rounded-lg shadow-2xl absolute bottom-16 right-0 overflow-hidden">
+            <div class="bg-[#D4A373] p-3 text-white font-bold">Honey - Virtual Assistant</div>
+            <div id="chat-log" class="p-4 h-48 overflow-y-auto text-sm space-y-2">
+                <p>Hello! How can I help you today?</p>
+            </div>
+            <div class="p-2 border-t grid gap-1">
+                <button onclick="respond('nail')" class="text-left hover:bg-gray-100 p-2 text-xs">How do I book a nail appointment?</button>
+                <button onclick="respond('hours')" class="text-left hover:bg-gray-100 p-2 text-xs">What are your café hours?</button>
+                <button onclick="respond('location')" class="text-left hover:bg-gray-100 p-2 text-xs">Where are you located?</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
